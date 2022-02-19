@@ -1,0 +1,44 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="row">
+  <div class="col">
+    <h1>Restaurants</h1>
+
+  </div>
+  <div class="col">
+    <%= link_to "Add New restaurant", new_restaurant_path, :class => "btn btn-primary" %>
+  </div>
+</div>
+
+<%= form_with url: restaurants_path, method: :get do |form|  %>
+  <%= form.search_field :query %>
+  <%= form.button "Search" %>
+<% end %>
+
+<div class="row">
+  <div id="restaurants">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Cuisine</th>
+        <th scope="col">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @restaurants.each do |restaurant| %>
+          <tr>
+            <td>
+              <%= link_to restaurant.name, restaurant %>
+            </td>
+            <td><%= restaurant.cuisine %></td>
+            <td><%= restaurant.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
